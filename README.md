@@ -25,7 +25,7 @@ Thank you SWAR for your hard work.
 
 # Changelog
 
-* v0.1.0@3
+* v0.1.0b@3
   
   1. Added history command (`python manager.py history`), shows a list containing information about the completed plots.<br/>    
     Thank you @ConnorChristie for this feature.
