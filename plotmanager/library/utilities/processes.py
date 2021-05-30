@@ -54,12 +54,6 @@ def get_plot_k_size(commands):
         return None
     return commands[k_index]
 
-def get_plot_r_quant(commands):
-    try:
-        k_index = commands.index('-r') + 1
-    except ValueError:
-        return None
-    return commands[k_index]
 
 def get_plot_directories(commands):
     try:
@@ -256,7 +250,6 @@ def get_running_plots(jobs, running_work, instrumentation_settings):
 
         temporary_drive, temporary2_drive, destination_drive = get_plot_drives(commands=commands)
         k_size = get_plot_k_size(commands=commands)
-        r_count = get_plot_r_quant(commands=commands)
         work = deepcopy(Work())
         work.job = assumed_job
         work.log_file = log_file_path
@@ -276,7 +269,6 @@ def get_running_plots(jobs, running_work, instrumentation_settings):
         work.destination_drive = destination_drive
         work.temp_file_size = temp_file_size
         work.k_size = k_size
-        work.threads = r_count
 
         running_work[work.pid] = work
     logging.info(f'Finished finding running plots')

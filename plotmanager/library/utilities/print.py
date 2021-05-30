@@ -23,7 +23,6 @@ def _get_row_info(pid, running_work, view_settings, as_raw_values=False):
     row = [
         work.job.name if work.job else '?',
         work.k_size,
-        work.threads,
         plot_id_prefix,
         pid,
         work.datetime_start.strftime(view_settings['datetime_format']),
@@ -83,13 +82,11 @@ def get_job_data(jobs, running_work, view_settings, as_json=False):
                 continue
             rows.append(_get_row_info(pid, running_work, view_settings, as_json))
             added_pids.append(pid)
-
     for pid in running_work.keys():
         if pid in added_pids:
             continue
         rows.append(_get_row_info(pid, running_work, view_settings, as_json))
         added_pids.append(pid)
-
     rows.sort(key=lambda x: (x[5]), reverse=True)
     for i in range(len(rows)):
         rows[i] = [str(i+1)] + rows[i]
@@ -101,7 +98,7 @@ def get_job_data(jobs, running_work, view_settings, as_json=False):
 
 
 def pretty_print_job_data(job_data):
-    headers = ['num', 'job', 'k', 'r', 'plot_id', 'pid', 'start', 'elapsed_time', 'phase', 'phase_times', 'progress', 'temp_size']
+    headers = ['num', 'job', 'k', 'plot_id', 'pid', 'start', 'elapsed_time', 'phase', 'phase_times', 'progress', 'temp_size']
     rows = [headers] + job_data
     return pretty_print_table(rows)
 
@@ -144,7 +141,7 @@ def get_drive_data(drives, running_work, job_data):
 
     pid_to_num = {}
     for job in job_data:
-        pid_to_num[job[5]] = job[0]
+        pid_to_num[job[4]] = job[0]
 
     drive_types = {}
     has_temp2 = False
