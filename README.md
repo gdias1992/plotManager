@@ -1,8 +1,7 @@
 # Original Project
 Based on the project: https://github.com/swar/Swar-Chia-Plot-Manager
 
-Thank you SWAR for your hard work.
-
+Thank you **SWAR** for your hard work.
 <br/>
 
 # How to Install
@@ -20,15 +19,17 @@ Thank you SWAR for your hard work.
    * This will start a process in the background that will manage plots based on your inputted settings.
 8. Run the View: `python manager.py view`
    * This will loop through a view screen with details about active plots.
-
 <br/>
 
 # Changelog
+* v0.1.0b@4
+  
+  1. Added thread count column (-r) in view command (`python manager.py view`).
 
 * v0.1.0b@3
   
-  1. Added history command (`python manager.py history`), shows a list containing information about the completed plots.<br/>    
-    Thank you @ConnorChristie for this feature.
+  1. Added history command (`python manager.py history`), shows a list containing information about the completed plots.<br/>
+   Thank you **@ConnorChristie** for this feature.
 
   2. Added job parameter `plots_to_trigger`. It controls how many plots are started when the time comes, usefull to start more than 1 plot per stagger.
 
