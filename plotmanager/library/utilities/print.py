@@ -223,7 +223,7 @@ def print_json(jobs, running_work, view_settings):
 def print_view(jobs, running_work, analysis, drives, next_log_check, view_settings, loop):
     # Job Table
     job_data = get_job_data(jobs=jobs, running_work=running_work, view_settings=view_settings)
-
+    
     # Drive Table
     drive_data = ''
     if view_settings.get('include_drive_info'):
@@ -231,10 +231,19 @@ def print_view(jobs, running_work, analysis, drives, next_log_check, view_settin
 
     manager_processes = get_manager_processes()
 
+    # Thread Usage
+    thread_usage = 0
+    for job in job_data:
+        if job[8] == "1":
+            thread_usage += int(job[3])
+        else:
+            thread_usage += 1
+
     if os.name == 'nt':
         os.system('cls')
     else:
         os.system('clear')
+        
     print(pretty_print_job_data(job_data))
     print(f'Manager Status: {"Running" if manager_processes else "Stopped"}')
     print()
@@ -242,11 +251,13 @@ def print_view(jobs, running_work, analysis, drives, next_log_check, view_settin
     if view_settings.get('include_drive_info'):
         print(drive_data)
     if view_settings.get('include_cpu'):
-        print(f'CPU Usage: {psutil.cpu_percent()}%')
+        print(f'CPU Usage: {psutil.cpu_percent()}%')    
     if view_settings.get('include_ram'):
         ram_usage = psutil.virtual_memory()
         print(f'RAM Usage: {pretty_print_bytes(ram_usage.used, "gb")}/{pretty_print_bytes(ram_usage.total, "gb", 2, "GiB")}'
               f'({ram_usage.percent}%)')
+    if view_settings.get('include_threads'):
+        print(f'Thread Usage: {thread_usage}/{os.cpu_count()}')
     print()
     if view_settings.get('include_plot_stats'):
         print(f'Plots Completed Yesterday: {analysis["summary"].get(datetime.now().date() - timedelta(days=1), 0)}')

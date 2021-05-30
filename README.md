@@ -22,6 +22,9 @@ Thank you **SWAR** for your hard work.
 <br/>
 
 # Changelog
+* v0.1.0b@5
+   1. Added thread usage information in view command (`python manager.py view`).
+
 * v0.1.0b@4
   
   1. Added thread count column (-r) in view command (`python manager.py view`).
