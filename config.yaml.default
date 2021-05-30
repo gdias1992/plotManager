@@ -37,6 +37,7 @@ view:
   include_seconds_for_phase: false
   include_drive_info: true
   include_cpu: true
+  include_threads: true
   include_ram: true
   include_plot_stats: true
 

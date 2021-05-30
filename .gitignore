@@ -2,7 +2,8 @@
 .git
 .idea
 .vscode
+venv
 *.log
 *.bat
 config.yaml
-venv
+*.pyc
