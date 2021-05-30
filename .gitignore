@@ -3,6 +3,8 @@
 .idea
 .vscode
 venv
+__pycache__/
+
 *.log
 *.bat
 config.yaml
