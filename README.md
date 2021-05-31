@@ -27,7 +27,7 @@ Thank you **SWAR** for your hard work.
 
 * v0.1.0b@4
   
-  1. Added thread count column (-r) in view command (`python manager.py view`).
+  1. Added thread count column in view command (`python manager.py view`), after phase 1 shows only 1 thread.
 
 * v0.1.0b@3
   
