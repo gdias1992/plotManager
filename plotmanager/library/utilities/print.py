@@ -23,7 +23,7 @@ def _get_row_info(pid, running_work, view_settings, as_raw_values=False):
     row = [
         work.job.name if work.job else '?',
         work.k_size,
-        work.threads,
+        str(work.threads) if work.current_phase == 1 else str(1),
         plot_id_prefix,
         pid,
         work.datetime_start.strftime(view_settings['datetime_format']),
@@ -234,10 +234,7 @@ def print_view(jobs, running_work, analysis, drives, next_log_check, view_settin
     # Thread Usage
     thread_usage = 0
     for job in job_data:
-        if job[8] == "1":
-            thread_usage += int(job[3])
-        else:
-            thread_usage += 1
+        thread_usage += int(job[3])
 
     if os.name == 'nt':
         os.system('cls')
